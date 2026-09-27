@@ -1,0 +1,43 @@
+# Dependencies
+**/node_modules/
+.pnp
+.pnp.js
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Build / cache
+**/.next/
+**/out/
+**/build/
+**/dist/
+**/.turbo/
+**/.medusa/
+**/.cache/
+
+# Env & secrets
+**/.env
+**/.env.*
+!**/.env.template
+!**/.env.example
+
+# Logs & OS
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# Editor / local
+.vscode/
+.idea/
+.vercel/
+*.pem
+
+# Uploads / media scratch (keep storefront public assets)
+store/img para proyecto/
