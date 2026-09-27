@@ -4,20 +4,24 @@ Guion para cuatro personas. Cada una tiene un bloque, qué debe verse en pantall
 
 Tiempo total aproximado: 14 minutos, más preguntas.
 
-| Persona | Bloque | Tiempo |
-| --- | --- | --- |
-| 1 | La web: qué es y recorrido | 3 min |
-| 2 | Backend: Medusa, datos y pagos | 4 min |
-| 3 | Frontend: tienda y catálogo | 3.5 min |
-| 4 | Frontend: compra, cuenta y cierre | 3.5 min |
 
-Antes de entrar: backend en marcha, storefront con `pnpm build` y `pnpm start`, y http://localhost:8000/ec abierto una vez. Credenciales y tarjeta de prueba están al final.
+| Persona | Bloque                            | Tiempo  |
+| ------- | --------------------------------- | ------- |
+| 1       | La web: qué es y recorrido        | 3 min   |
+| 2       | Backend: Medusa, datos y pagos    | 4 min   |
+| 3       | Frontend: tienda y catálogo       | 3.5 min |
+| 4       | Frontend: compra, cuenta y cierre | 3.5 min |
+
+
+Antes de entrar: backend en marcha, storefront con `pnpm build` y `pnpm start`, y [http://localhost:8000/ec](http://localhost:8000/ec) abierto una vez. Credenciales y tarjeta de prueba están al final.
 
 ---
 
+
+
 ## Persona 1 — La web
 
-**En pantalla:** inicio http://localhost:8000/ec, sin entrar todavía a un producto.
+**En pantalla:** inicio [http://localhost:8000/ec](http://localhost:8000/ec), sin entrar todavía a un producto.
 
 ### Qué decir
 
@@ -40,15 +44,19 @@ A partir de aquí el resto del equipo entra al cómo: la persona 2 en el servido
 3. Selector de país en el header.
 4. Botón **Admin Medusa**, sin iniciar sesión: eso lo abre la persona 2.
 
+
+
 ### No repetir
 
 Precios fila por fila, tallas, ni el pago. Eso es de las personas 3 y 4.
 
 ---
 
+
+
 ## Persona 2 — Backend
 
-**En pantalla:** al terminar, el admin en http://localhost:9000/app. Al empezar puedes seguir en la tienda y cambiar al admin cuando hables de órdenes y productos.
+**En pantalla:** al terminar, el admin en [http://localhost:9000/app](http://localhost:9000/app). Al empezar puedes seguir en la tienda y cambiar al admin cuando hables de órdenes y productos.
 
 ### Qué decir
 
@@ -77,15 +85,19 @@ Cuando la persona 4 confirme una compra, la orden aparece en **Orders**. Eso cie
 3. **Settings → Regions**: Americas / Ecuador, moneda USD.
 4. Deja **Orders** a la vista para cuando termine el checkout. No hace falta crear nada a mano.
 
+
+
 ### No repetir
 
 El diseño de la tienda ni el paso a paso de la caja de tarjeta.
 
 ---
 
+
+
 ## Persona 3 — Frontend: tienda y catálogo
 
-**En pantalla:** la tienda, empezando en http://localhost:8000/ec. Esta persona maneja el teclado hasta dejar un producto en el carrito.
+**En pantalla:** la tienda, empezando en [http://localhost:8000/ec](http://localhost:8000/ec). Esta persona maneja el teclado hasta dejar un producto en el carrito.
 
 ### Qué decir
 
@@ -110,11 +122,15 @@ Dejo el carrito con la hoodie en una talla, listo para el checkout.
 3. Ficha de la sudadera: elegir una talla y agregarla.
 4. Carrito con el ítem, la cantidad y el campo de promoción. No pagues todavía.
 
+
+
 ### No repetir
 
 La arquitectura de Medusa ni el formulario de la tarjeta.
 
 ---
+
+
 
 ## Persona 4 — Frontend: compra, cuenta y cierre
 
@@ -142,32 +158,41 @@ Para correr esto en otra máquina están el README y `INSTALACION.md`: Node 22, 
 4. Si la persona 2 dejó el admin abierto, señalar esa orden en **Orders**.
 5. `/ec/account`: pantalla de registro o de pedidos, un vistazo.
 
+
+
 ### Cierre (las cuatro, 20 segundos)
 
 Persona 4 puede cerrar: la tienda muestra el merch y cobra en demo; Medusa guarda catálogo, precios y la orden; Next.js es la cara que usa el cliente. Preguntas.
 
 ---
 
+
+
 ## Antes de subir
 
 - [ ] Backend listo en el puerto 9000.
 - [ ] Storefront en producción en el puerto 8000 (`pnpm build` y `pnpm start`).
-- [ ] http://localhost:8000/ec abierto al menos una vez.
+- [ ] [http://localhost:8000/ec](http://localhost:8000/ec) abierto al menos una vez.
 - [ ] Carrito vacío al empezar, para que la persona 3 agregue la hoodie en vivo.
 - [ ] El admin inicia sesión con `admin@medusajs.com` / `supersecret`.
 - [ ] Tarjeta de aprobación anotada: `4242 4242 4242 4242`.
 - [ ] Quien habla no lee este archivo entero: cada persona usa solo su bloque.
 
+
+
 ## Datos que pueden preguntar
 
-| Pregunta | Respuesta corta |
-| --- | --- |
-| ¿Dónde está el código? | `store/apps/backend` y `store/apps/storefront` |
-| ¿Qué versiones? | Medusa 2.21, Next.js 15, Node 22, pnpm 10 |
-| ¿Por qué `/ec`? | Código de país de la región. Ecuador, USD |
-| ¿El 50% es real? | Sí en la lista de precios del backend. El banner solo muestra el contador |
-| ¿Hasta cuándo la oferta? | Medianoche, hora de Quito. El precio sigue en la base hasta que se vuelva a correr el script |
-| ¿Se cobra? | No. `PAYPHONE_DEMO=true` |
-| ¿Tarjeta que falla? | Cualquier número válido que termine en `0002` |
-| ¿Quién tiene tallas? | Solo la sudadera hoodie |
-| ¿Hace falta cuenta para comprar? | No. El checkout de invitado está habilitado |
+
+| Pregunta                         | Respuesta corta                                                                              |
+| -------------------------------- | -------------------------------------------------------------------------------------------- |
+| ¿Dónde está el código?           | `store/apps/backend` y `store/apps/storefront`                                               |
+| ¿Qué versiones?                  | Medusa 2.21, Next.js 15, Node 22, pnpm 10                                                    |
+| ¿Por qué `/ec`?                  | Código de país de la región. Ecuador, USD                                                    |
+| ¿El 50% es real?                 | Sí en la lista de precios del backend. El banner solo muestra el contador                    |
+| ¿Hasta cuándo la oferta?         | Medianoche, hora de Quito. El precio sigue en la base hasta que se vuelva a correr el script |
+| ¿Se cobra?                       | No. `PAYPHONE_DEMO=true`                                                                     |
+| ¿Tarjeta que falla?              | Cualquier número válido que termine en `0002`                                                |
+| ¿Quién tiene tallas?             | Solo la sudadera hoodie                                                                      |
+| ¿Hace falta cuenta para comprar? | No. El checkout de invitado está habilitado                                                  |
+
+
