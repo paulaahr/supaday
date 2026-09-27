@@ -237,6 +237,91 @@ export async function setShippingMethod({
     .catch(medusaError)
 }
 
+export async function preparePayphoneCheckout(
+  cartId: string,
+  countryCode: string
+) {
+  const headers = {
+    ...(await getAuthHeaders()),
+  }
+
+  return sdk.client
+    .fetch<{ payUrl: string; demo: boolean; clientTransactionId?: string }>(
+      "/store/payphone/prepare",
+      {
+        method: "POST",
+        body: { cart_id: cartId, country_code: countryCode },
+        headers,
+        cache: "no-store",
+      }
+    )
+    .catch((error) => {
+      throw new Error(
+        error instanceof Error && error.message
+          ? error.message
+          : "No se pudo abrir Payphone."
+      )
+    })
+}
+
+export async function attachPayphoneReturn(input: {
+  cartId: string
+  payphoneId: string
+  clientTransactionId: string
+}) {
+  const headers = {
+    ...(await getAuthHeaders()),
+  }
+
+  return sdk.client
+    .fetch<{ ok: boolean }>("/store/payphone/attach", {
+      method: "POST",
+      body: {
+        cart_id: input.cartId,
+        payphone_id: input.payphoneId,
+        client_transaction_id: input.clientTransactionId,
+      },
+      headers,
+      cache: "no-store",
+    })
+    .catch((error) => {
+      throw new Error(
+        error instanceof Error && error.message
+          ? error.message
+          : "No se pudo confirmar el pago de Payphone."
+      )
+    })
+}
+
+export async function rememberDemoCard(input: {
+  cartId: string
+  last4: string
+  clientTransactionId: string
+}) {
+  const headers = {
+    ...(await getAuthHeaders()),
+  }
+
+  return sdk.client
+    .fetch<{ ok: boolean }>("/store/payphone/demo-card", {
+      method: "POST",
+      body: {
+        cart_id: input.cartId,
+        last4: input.last4,
+        client_transaction_id: input.clientTransactionId,
+      },
+      headers,
+      cache: "no-store",
+    })
+    .catch((error) => {
+      throw new Error(
+        error instanceof Error && error.message
+          ? error.message
+          : "No se pudo registrar la tarjeta de demostración."
+      )
+    })
+}
+
 export async function initiatePaymentSession(
   cart: HttpTypes.StoreCart,
   data: HttpTypes.StoreInitializePaymentSession

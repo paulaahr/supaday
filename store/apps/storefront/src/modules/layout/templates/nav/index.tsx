@@ -1,7 +1,6 @@
 import { Suspense } from "react"
 import Image from "next/image"
 
-import { listLocales } from "@lib/data/locales"
 import { getLocale } from "@lib/data/locale-actions"
 import { listRegions } from "@lib/data/regions"
 import { StoreRegion } from "@medusajs/types"
@@ -15,9 +14,8 @@ const MEDUSA_ADMIN_URL =
   "http://localhost:9000"
 
 export default async function Nav() {
-  const [regions, locales, currentLocale] = await Promise.all([
+  const [regions, currentLocale] = await Promise.all([
     listRegions().then((regions: StoreRegion[]) => regions),
-    listLocales(),
     getLocale(),
   ])
 
@@ -27,7 +25,7 @@ export default async function Nav() {
         <nav className="content-container txt-xsmall-plus flex items-center justify-between w-full h-full text-small-regular">
           <div className="flex-1 basis-0 h-full flex items-center">
             <div className="h-full">
-              <SideMenu regions={regions} locales={locales} currentLocale={currentLocale} />
+              <SideMenu regions={regions} locales={null} currentLocale={currentLocale} />
             </div>
           </div>
 

@@ -2,10 +2,10 @@
 
 import Link from "next/link"
 import { useParams } from "next/navigation"
-import React, { useCallback } from "react"
+import React from "react"
 
 /**
- * Next.js `<Link />` con country code + anti double-click mientras navega.
+ * Next.js `<Link />` con el country code de la ruta.
  */
 const LocalizedClientLink = ({
   children,
@@ -22,23 +22,8 @@ const LocalizedClientLink = ({
 }) => {
   const { countryCode } = useParams()
 
-  const handleClick = useCallback(
-    (event: React.MouseEvent<HTMLAnchorElement>) => {
-      if (document.body.dataset.navPending === "1") {
-        event.preventDefault()
-        return
-      }
-      onClick?.(event)
-    },
-    [onClick]
-  )
-
   return (
-    <Link
-      href={`/${countryCode}${href}`}
-      onClick={handleClick}
-      {...props}
-    >
+    <Link href={`/${countryCode}${href}`} onClick={onClick} {...props}>
       {children}
     </Link>
   )

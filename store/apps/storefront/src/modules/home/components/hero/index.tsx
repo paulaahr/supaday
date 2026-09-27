@@ -1,11 +1,10 @@
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import Magnetic from "@modules/common/components/magnetic"
 
 const Hero = () => {
   return (
     <div className="relative h-[72vh] min-h-[480px] w-full overflow-hidden bg-usfq-black text-white">
       <div
-        className="ken-burns absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url('/usfq/hero-campus.jpg')" }}
         role="img"
         aria-label="Campus Universidad San Francisco de Quito"
@@ -17,9 +16,9 @@ const Hero = () => {
           alt="USFQ"
           width={200}
           height={200}
-          className="animate-cozy h-16 w-auto brightness-0 invert small:h-24"
+          className="h-16 w-auto brightness-0 invert small:h-24"
         />
-        <div className="animate-cozy" style={{ animationDelay: "80ms" }}>
+        <div>
           <p className="mb-3 text-[10px] uppercase tracking-[0.35em] text-usfq-red">
             Universidad San Francisco de Quito
           </p>
@@ -30,14 +29,12 @@ const Hero = () => {
             Oferta limitada: 50% de descuento en merch oficial.
           </p>
         </div>
-        <Magnetic className="animate-cozy" style={{ animationDelay: "160ms" }}>
-          <LocalizedClientLink
-            href="/store"
-            className="pressable inline-flex h-11 items-center rounded-full bg-usfq-red px-10 font-medium text-white transition hover:bg-usfq-red-dark"
-          >
-            Ver colecciones
-          </LocalizedClientLink>
-        </Magnetic>
+        <LocalizedClientLink
+          href="/store"
+          className="pressable inline-flex h-11 items-center rounded-full bg-usfq-red px-10 font-medium text-white transition hover:bg-usfq-red-dark"
+        >
+          Ver colecciones
+        </LocalizedClientLink>
       </div>
       <a
         href="#categorias"

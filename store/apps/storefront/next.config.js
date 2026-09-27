@@ -28,6 +28,19 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Referrer-Policy",
+            value: "origin",
+          },
+        ],
+      },
+    ]
+  },
   images: {
     unoptimized: true,
     qualities: [50, 75],

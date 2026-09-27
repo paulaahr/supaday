@@ -5,7 +5,7 @@ const CampusSection = () => {
   return (
     <section className="relative min-h-[48vh] w-full overflow-hidden bg-usfq-black text-white">
       <div
-        className="ken-burns absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url('/usfq/campus-atmosphere.jpg')" }}
         role="img"
         aria-label="Ambiente del campus USFQ"

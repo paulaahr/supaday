@@ -236,7 +236,7 @@ const Payment = ({
                   <Text>
                     {isPayphone(selectedPaymentMethod) ||
                     isPayphone(activeSession?.provider_id)
-                      ? "Continuarás a Payphone (demo)"
+                      ? "Continuarás a la caja de pagos. No se cobra la tarjeta."
                       : "Another step will appear"}
                   </Text>
                 </div>

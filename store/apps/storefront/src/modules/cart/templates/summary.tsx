@@ -31,8 +31,8 @@ const Summary = ({ cart }: SummaryProps) => {
         Resumen
       </Heading>
       <p className="text-sm leading-6 text-grey-50">
-        Revisa tu merch USFQ y continúa al pago. Puedes usar Payphone (demo) o
-        pago manual.
+        Revisa tu merch USFQ y continúa al pago. Puedes pagar con tarjeta (demo)
+        o con pago manual.
       </p>
       <DiscountCode cart={cart} />
       <Divider />

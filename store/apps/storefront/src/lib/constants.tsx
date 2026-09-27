@@ -34,7 +34,7 @@ export const paymentInfoMap: Record<
     icon: <CreditCard />,
   },
   pp_payphone_payphone: {
-    title: "Payphone (demo)",
+    title: "Tarjeta",
     icon: <CreditCard />,
   },
 }

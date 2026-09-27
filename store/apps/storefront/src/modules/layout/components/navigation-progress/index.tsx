@@ -12,7 +12,6 @@ const NavigationProgress = () => {
   const [active, setActive] = useState(false)
   const [progress, setProgress] = useState(0)
   const timerRef = useRef<number | null>(null)
-  const lockUntil = useRef(0)
   const routeKey = `${pathname}?${searchParams?.toString() || ""}`
 
   useEffect(() => {
@@ -20,7 +19,6 @@ const NavigationProgress = () => {
     setProgress(100)
     const done = window.setTimeout(() => {
       setProgress(0)
-      delete document.body.dataset.navPending
     }, 180)
     if (timerRef.current) {
       window.clearInterval(timerRef.current)
@@ -31,8 +29,6 @@ const NavigationProgress = () => {
 
   useEffect(() => {
     const start = () => {
-      document.body.dataset.navPending = "1"
-      lockUntil.current = Date.now() + 400
       setActive(true)
       setProgress(18)
       if (timerRef.current) {
@@ -69,15 +65,6 @@ const NavigationProgress = () => {
       const currentKey = `${window.location.pathname}?${window.location.search.slice(1)}`
       if (nextKey === currentKey) return
 
-      if (
-        document.body.dataset.navPending === "1" &&
-        Date.now() < lockUntil.current
-      ) {
-        event.preventDefault()
-        event.stopPropagation()
-        return
-      }
-
       start()
     }
 
@@ -85,7 +72,6 @@ const NavigationProgress = () => {
     return () => {
       document.removeEventListener("click", onClick, true)
       if (timerRef.current) window.clearInterval(timerRef.current)
-      delete document.body.dataset.navPending
     }
   }, [])
 

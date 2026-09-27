@@ -2,7 +2,6 @@ import { Text } from "@modules/common/components/ui"
 import { getProductPrice } from "@lib/util/get-product-price"
 import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import TiltCard from "@modules/common/components/tilt-card"
 import Thumbnail from "../thumbnail"
 import PreviewPrice from "./price"
 
@@ -31,8 +30,7 @@ export default async function ProductPreview({
   const needsSize = Boolean(product.metadata?.needs_size)
 
   return (
-    <TiltCard>
-      <LocalizedClientLink href={`/products/${product.handle}`} className="group">
+    <LocalizedClientLink href={`/products/${product.handle}`} className="group">
         <div data-testid="product-wrapper">
           <div className="relative">
             {cheapestPrice?.price_type === "sale" && (
@@ -81,7 +79,6 @@ export default async function ProductPreview({
             )}
           </div>
         </div>
-      </LocalizedClientLink>
-    </TiltCard>
+    </LocalizedClientLink>
   )
 }

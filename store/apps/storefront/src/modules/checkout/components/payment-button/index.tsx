@@ -1,7 +1,7 @@
 "use client"
 
 import { isManual, isPayphone, isStripeLike } from "@lib/constants"
-import { placeOrder } from "@lib/data/cart"
+import { placeOrder, preparePayphoneCheckout } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 import { Button } from "@modules/common/components/ui"
 import { useElements, useStripe } from "@stripe/react-stripe-js"
@@ -177,47 +177,37 @@ const PayphonePaymentButton = ({
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const { countryCode } = useParams()
 
-  const paymentSession = cart.payment_collection?.payment_sessions?.[0]
-  const sessionData = (paymentSession?.data || {}) as Record<string, unknown>
-
-  const handlePayment = () => {
+  const handlePayment = async () => {
     if (!cart?.id) {
       setErrorMessage("No hay carrito activo.")
       return
     }
 
+    const country = Array.isArray(countryCode)
+      ? countryCode[0]
+      : countryCode || "ec"
+
     setSubmitting(true)
+    setErrorMessage(null)
 
-    const params = new URLSearchParams({
-      cart_id: cart.id,
-      country_code: String(countryCode || "ec"),
-      id: String(sessionData.id || ""),
-      clientTransactionId: String(sessionData.clientTransactionId || ""),
-      amount: String(sessionData.amount ?? cart.total ?? ""),
-      currency: String(
-        sessionData.currency_code || cart.currency_code || "USD"
-      ).toUpperCase(),
-    })
+    try {
+      const result = await preparePayphoneCheckout(cart.id, country)
 
-    const payUrl =
-      typeof sessionData.payUrl === "string" && sessionData.payUrl.length > 0
-        ? (() => {
-            try {
-              const url = new URL(sessionData.payUrl)
-              url.searchParams.set("cart_id", cart.id)
-              url.searchParams.set(
-                "country_code",
-                String(countryCode || "ec")
-              )
-              // Prefer localized path under the storefront country prefix
-              return `/${countryCode || "ec"}/payphone-demo?${url.searchParams.toString()}`
-            } catch {
-              return `/${countryCode || "ec"}/payphone-demo?${params.toString()}`
-            }
-          })()
-        : `/${countryCode || "ec"}/payphone-demo?${params.toString()}`
+      if (!result?.payUrl) {
+        setErrorMessage("Payphone no devolvió la página de pago.")
+        setSubmitting(false)
+        return
+      }
 
-    window.location.href = payUrl
+      window.location.assign(result.payUrl)
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "No se pudo abrir la página de Payphone."
+      )
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -229,7 +219,7 @@ const PayphonePaymentButton = ({
         size="large"
         data-testid={dataTestId || "payphone-submit-button"}
       >
-        Pagar con Payphone
+        Pagar con tarjeta
       </Button>
       <ErrorMessage
         error={errorMessage}

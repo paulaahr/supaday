@@ -44,7 +44,7 @@ body {
 }
 
 .animate-cozy {
-  animation: cozy-fade-up 0.7s var(--ease-cozy) both;
+  animation: none;
 }
 
 /* Bencho-inspired micro-interactions (press / underline / select) */
@@ -113,7 +113,7 @@ body {
 }
 
 .ken-burns {
-  animation: ken-burns 18s var(--ease-cozy) alternate infinite;
+  animation: none;
 }
 
 @media (prefers-reduced-motion: reduce), (max-width: 768px) {

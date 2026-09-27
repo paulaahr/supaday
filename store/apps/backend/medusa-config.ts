@@ -27,7 +27,9 @@ module.exports = defineConfig({
             resolve: "./src/modules/payphone",
             id: "payphone",
             options: {
-              demo: process.env.PAYPHONE_DEMO !== "false",
+              demo: process.env.PAYPHONE_DEMO === "true",
+              token: process.env.PAYPHONE_TOKEN,
+              storeId: process.env.PAYPHONE_STORE_ID,
               storefrontUrl:
                 process.env.PAYPHONE_STOREFRONT_URL ||
                 process.env.STORE_CORS?.split(",")[0] ||
