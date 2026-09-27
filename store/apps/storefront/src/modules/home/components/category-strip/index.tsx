@@ -28,7 +28,7 @@ const CategoryStrip = () => {
               <LocalizedClientLink
                 key={category.handle}
                 href={`/categories/${category.handle}`}
-                className="link-underline font-serif text-2xl text-usfq-black transition-colors duration-300 hover:text-usfq-red small:text-3xl"
+                className="link-underline font-serif text-2xl text-usfq-black transition-all duration-300 hover:-translate-y-0.5 hover:text-usfq-red small:text-3xl"
               >
                 {category.name}
               </LocalizedClientLink>

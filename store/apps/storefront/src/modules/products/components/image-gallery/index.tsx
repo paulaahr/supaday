@@ -21,7 +21,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
                 <Image
                   src={image.url}
                   priority={index <= 2 ? true : false}
-                  className="absolute inset-0 rounded-rounded"
+                  className="absolute inset-0 rounded-rounded transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.04]"
                   alt={`Product image ${index + 1}`}
                   fill
                   sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"

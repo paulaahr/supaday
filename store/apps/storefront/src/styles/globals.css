@@ -44,7 +44,7 @@ body {
 }
 
 .animate-cozy {
-  animation: none;
+  animation: cozy-fade-up 720ms var(--ease-cozy) both;
 }
 
 /* Bencho-inspired micro-interactions (press / underline / select) */
@@ -113,7 +113,11 @@ body {
 }
 
 .ken-burns {
-  animation: none;
+  animation: ken-burns 22s var(--ease-cozy) both;
+}
+
+.scroll-cue {
+  animation: cozy-fade-up 1.4s var(--ease-cozy) 0.6s infinite alternate;
 }
 
 @media (prefers-reduced-motion: reduce), (max-width: 768px) {
@@ -124,7 +128,8 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .ken-burns,
-  .animate-cozy {
+  .animate-cozy,
+  .scroll-cue {
     animation: none !important;
   }
 

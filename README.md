@@ -1,11 +1,13 @@
 # USFQ Store
 
-Tienda de merch del campus de la Universidad San Francisco de Quito. El ecommerce vive en `store/`: un backend **Medusa 2** (API y panel admin) y un storefront **Next.js** (la tienda que ve el cliente).
+Tienda de merch del campus de la Universidad San Francisco de Quito. Se entrega como una carpeta comprimida en zip y se ejecuta en local. El ecommerce vive en `store/`: un backend **Medusa 2** (API y panel admin) y un storefront **Next.js** (la tienda que ve el cliente).
+
+Quien recibe el zip sigue [INSTALACION.md](INSTALACION.md): descomprime, instala dependencias y abre http://localhost:8000/ec. Hace falta internet. El catálogo está en la base compartida; la conexión ya viene en `store/apps/backend/.env`.
 
 | Documento | Para qué sirve |
 | --- | --- |
 | Este README | Qué hace la web y cómo usar cada función |
-| [INSTALACION.md](INSTALACION.md) | Instalar Node, pnpm, base de datos y dejar las dos apps corriendo |
+| [INSTALACION.md](INSTALACION.md) | Armar el zip y, al recibirlo, instalar y ejecutar la tienda en local |
 | [EXPOSICION.md](EXPOSICION.md) | Guion de la exposición, repartido en 4 personas |
 
 ## Aplicaciones
@@ -164,6 +166,11 @@ pnpm medusa exec ./src/scripts/fix-hoodie-inventory.ts
 
 `seed-temu-flash-sale.ts` es el que deja el 50% vigente. `seed-usfq-taxonomy.ts` asigna categorías, colecciones, descripciones y las tallas de la hoodie.
 
-## Secretos
+## Archivos de entorno
 
-`.env` y `.env.local` no van a git. Ahí están `DATABASE_URL` y la publishable key. Las plantillas versionadas son `store/apps/backend/.env.template` y `store/apps/storefront/.env.template`.
+Estos dos archivos tienen que viajar dentro del zip. Sin ellos la otra computadora no conecta a la base ni muestra productos:
+
+- `store/apps/backend/.env` — `DATABASE_URL` y el modo demo de pagos
+- `store/apps/storefront/.env.local` — la publishable key y `http://localhost:9000`
+
+Las plantillas, por si hay que reconstruirlos, son `store/apps/backend/.env.template` y `store/apps/storefront/.env.template`. Cómo armar el zip y cómo arrancarlo está en [INSTALACION.md](INSTALACION.md).

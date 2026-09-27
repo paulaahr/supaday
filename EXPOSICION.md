@@ -148,7 +148,7 @@ La orden queda con su número en la tienda. En el admin, en **Orders**, es la mi
 
 La cuenta es la otra mitad del cliente. En `/ec/account` alguien se registra o inicia sesión. Dentro puede editar perfil, guardar direcciones y ver sus pedidos. También existe verificación de cuenta y la opción de transferir una orden a otro usuario. Para la demo basta enseñar el login y la lista de pedidos; el invitado ya completó la compra.
 
-Para correr esto en otra máquina están el README y `INSTALACION.md`: Node 22, pnpm 10, la `DATABASE_URL`, la publishable key, `pnpm dev` en el backend y, para presentar, `pnpm build` y `pnpm start` en la tienda.
+Para correrlo en otra computadora se comparte el zip del proyecto. `INSTALACION.md` dice qué archivos de entorno deben ir dentro, cómo instalar Node y pnpm, y cómo levantar el backend con `pnpm dev` y la tienda con `pnpm build` y `pnpm start`.
 
 ### Qué mostrar
 
@@ -168,7 +168,7 @@ Persona 4 puede cerrar: la tienda muestra el merch y cobra en demo; Medusa guard
 
 
 
-## Antes de subir
+## Antes de presentar
 
 - [ ] Backend listo en el puerto 9000.
 - [ ] Storefront en producción en el puerto 8000 (`pnpm build` y `pnpm start`).

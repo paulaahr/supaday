@@ -10,6 +10,20 @@ type Props = {
   searchParams: Promise<{ v_id?: string }>
 }
 
+/** Next entrega handles con tilde aún codificados (`cer%C3%A1mica`). */
+function productHandle(handle: string) {
+  const value = handle.includes("%") ? safeDecode(handle) : handle
+  return value.normalize("NFC")
+}
+
+function safeDecode(value: string) {
+  try {
+    return decodeURIComponent(value)
+  } catch {
+    return value
+  }
+}
+
 export async function generateStaticParams() {
   try {
     const countryCodes = await listRegions().then((regions) =>
@@ -71,7 +85,7 @@ function getImagesForVariant(
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params
-  const { handle } = params
+  const handle = productHandle(params.handle)
   const region = await getRegion(params.countryCode)
 
   if (!region) {
@@ -100,6 +114,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
 export default async function ProductPage(props: Props) {
   const params = await props.params
+  const handle = productHandle(params.handle)
   const region = await getRegion(params.countryCode)
   const searchParams = await props.searchParams
 
@@ -111,7 +126,7 @@ export default async function ProductPage(props: Props) {
 
   const pricedProduct = await listProducts({
     countryCode: params.countryCode,
-    queryParams: { handle: params.handle },
+    queryParams: { handle },
   }).then(({ response }) => response.products[0])
 
   if (!pricedProduct) {

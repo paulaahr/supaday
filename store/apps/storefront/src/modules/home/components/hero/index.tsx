@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <div className="relative h-[72vh] min-h-[480px] w-full overflow-hidden bg-usfq-black text-white">
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="ken-burns absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url('/usfq/hero-campus.jpg')" }}
         role="img"
         aria-label="Campus Universidad San Francisco de Quito"
@@ -18,7 +18,7 @@ const Hero = () => {
           height={200}
           className="h-16 w-auto brightness-0 invert small:h-24"
         />
-        <div>
+        <div className="animate-cozy">
           <p className="mb-3 text-[10px] uppercase tracking-[0.35em] text-usfq-red">
             Universidad San Francisco de Quito
           </p>
@@ -38,7 +38,7 @@ const Hero = () => {
       </div>
       <a
         href="#categorias"
-        className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 text-[10px] uppercase tracking-[0.3em] text-white/70 transition-colors hover:text-white"
+        className="scroll-cue absolute bottom-8 left-1/2 z-20 -translate-x-1/2 text-[10px] uppercase tracking-[0.3em] text-white/70 transition-colors hover:text-white"
       >
         Scroll
       </a>
